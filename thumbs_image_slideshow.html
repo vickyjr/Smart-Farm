@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+
+<title>SliderWall Thumbs - Image slideshow example</title>
+
+<link rel="stylesheet" type="text/css" href="css/sliderwall_thumbs_skin.css"/>	<!-- Include the CSS of the slider (the slider skin). -->
+<link rel="stylesheet" type="text/css" href="css/slideshow_sample.css"/>	<!-- The general CSS of the entire HTML page. -->
+
+<script type="text/javascript" src="javascript/jquery-1.7.1.min.js"></script>			<!-- You must include the JQuery file. -->
+<script type="text/javascript" src="javascript/sliderwall-thumbs-1.1.2.js"></script>	<!-- You must include the SliderWall template. -->
+
+<script type="text/javascript">
+var mySlider;	// A reference to the SliderWall instance.
+var err;
+// Initialize the slider.
+$(document).ready(function() {
+	try {
+		// imageSlideshow is the id of the <div> tag that will contain the SliderWall instance.
+		$("#imageSlideshow").sliderWallThumbs({
+			// general options
+			cssClassSuffix: "",
+			domainKeys: "",
+			imageAlign: "middleCenter", /* topLeft, topCenter, topRight, middleLeft, middleCenter, middleRight, bottomLeft, bottomCenter, bottomRight */
+			imageScaleMode: "scaleCrop", /* scale, scaleCrop, crop, stretch */
+			loopContent: false,
+			rssFeed: null,
+			selectableContent: true,
+			
+			// slideshow options
+			autoSlideShow: false,
+			slideShowSpeed: 6,
+			
+			// timer control options
+			showTimer: true,
+			autoHideTimer: true,
+			timerPosition: "belowControlBar", /* aboveControlBar, belowControlBar */
+			
+			// control bar options
+			autoHideControlBar: false,
+			controlsHideDelay: 5,
+			controlsShowHideSpeed: 0.2,
+			showControlBar: true,
+			
+			// navigation options
+			autoHideNavButtons: false,
+			showNavigationButtons: true,
+			
+			// text options
+			autoHideText: false,
+			
+			// interaction options
+			useGestures: true,
+			useKeyboard: true,
+			useMouseScroll: true,
+			pauseOnMouseOver: false,
+			disableAutohideOnMouseOver: false,
+			
+			// transitions
+			transitionType: {
+				optimizeForIpad: false,  /* If set to true, it would use only the Alpha and Slide effects. */
+				random: false,
+				transitions: [
+					/*
+					Possible transitions: Alpha, AlphaBars, BrightSquares, Disc, FlipBars, Iris, LensGlare, None, Slide, SquareFade, SquareLight, Stripes, Waves, WaveScale, Wavy
+					Possible tween types: Back, Bounce, Circ, Cubic, Elastic, Expo (default), Quad, Quart, Quint, Sine
+					Possible easing types: easeIn, easeOut, easeInOut
+					*/
+					{
+						name: "Alpha",
+						duration: 0.75,
+						tweenType: "Expo",
+						easing: "easeInOut"
+					}, 
+					{
+						name: "AlphaBars",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeOut",
+						direction: "l2r",
+						random: false,
+						barWidth: 50
+					}, 
+					{
+						name: "BrightSquares",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeOut",
+						direction: "tl2br",
+						random: false,
+						tileWidth: 100,
+						tileHeight: 100
+					}, 
+					{
+						name: "Disc",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeInOut"
+					}, 
+					{
+						name: "FlipBars",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeOut",
+						direction: "l2r",
+						random: false,
+						barWidth: 80
+					}, 
+					{
+						name: "Iris",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeInOut"
+					}, 
+					{
+						name: "LensGlare",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeOut",
+						gradientWidth: 100,
+						margins: 20,
+						lightOffset: 0,
+						lightDirection: false
+					}, 
+					/*
+					{
+					name: "None" //This is the setting if you don't want to apply any transition effects.
+					},
+					*/
+					{
+						name: "Slide",
+						duration: 0.75,
+						tweenType: "Expo",
+						easing: "easeInOut",
+						direction: "horizontal"
+					}, 
+					{
+						name: "SquareFade",
+						duration: 1.5,
+						tweenType: "Expo",
+						easing: "easeOut",
+						direction: "tl2br",
+						random: false,
+						tileWidth: 100,
+						tileHeight: 100
+					}, 
+					{
+						name: "SquareLight",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeOut",
+						direction: "tl2br",
+						random: false,
+						tileWidth: 100,
+						tileHeight: 100
+					}, 
+					{
+						name: "Stripes",
+						duration: 1.5,
+						tweenType: "Expo",
+						easing: "easeInOut",
+						direction: "l2r",
+						random: false,
+						barWidth: 50
+					}, 
+					{
+						name: "Waves",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeIn",
+						direction: "l2r",
+						random: false,
+						barWidth: 60
+					}, 
+					{
+						name: "WaveScale",
+						duration: 1.5,
+						tweenType: "Expo",
+						easing: "easeOut",
+						maxWidth: 100
+					}, 
+					{
+						name: "Wavy",
+						duration: 1,
+						tweenType: "Expo",
+						easing: "easeOut",
+						direction: "l2r",
+						random: false,
+						barWidth: 60
+					}
+				]
+			},
+			
+			// callback functions
+			init: null,
+			contentLoadStart: null,
+			contentLoadComplete: null,
+			contentLoadError: null,
+			contentShow: null,
+			contentHide: null,
+			slideClick: null,
+			slideshowStart: null,
+			slideshowStop: null,
+			pageChange: null
+		});
+		
+		// This is how you get a reference to the SliderWall object to call 
+		// SliderWall methods (mySlider.next(), mySlider.getSelectedIndex()).
+		mySlider = $("#imageSlideshow").data("sliderWall");
+		
+	} catch(err) { /* handle any error messages */ }
+});
+</script>
+</head>
+
+<body>
+	<div id="main">
+		<h1>Image slideshow example</h1>
+		<p>This is a sample image slideshow using SliderWall. The transition effects are selected randomly from the list of possible effects.</p>
+		<p><strong>Note:</strong> this example requires HTML5 compatible browsers.</p>
+		<div id="imageSlideshow"> <!-- The slider will be placed within this <div> tag. -->
+			<div rel="slider_content" style="display: none;"> <!-- Define the structure and content for the slider. -->
+				<div rel="slide"> <!-- The structure for a slide. -->
+					<div rel="type">image</div> <!-- The type of a slide can be image, object (for swf files) and html. -->
+					<div rel="title">Title 1</div> <!-- The title of the slide. -->
+					<div rel="description">Description 1 (click on the image to open somesite.com)</div> <!-- The description of the slide. -->
+					<div rel="content">../images/01.jpg</div> <!-- The content of the slide: the URL of an image (if type is image), the URL of SWF file (if type is object) or HTML content (if type is html). -->
+					<div rel="thumbnail">../thumbnails/01.jpg</div> <!-- The URL to a thumbnail image. -->
+					<div rel="target_url">http://www.somesite.com</div> <!-- The URL of a target web page that is displayed in a new tab when the user clicks on the slide. -->
+					<div rel="target_window">_blank</div> <!-- The target window where the URL will be opened. Possible values are _blank, _parent, _self, _top and frame_name. -->
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 2</div>
+					<div rel="description">Description 2 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/02.jpg</div>
+					<div rel="thumbnail">../thumbnails/02.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 3</div>
+					<div rel="description">Description 3 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/03.jpg</div>
+					<div rel="thumbnail">../thumbnails/03.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 4</div>
+					<div rel="description">Description 4 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/04.jpg</div>
+					<div rel="thumbnail">../thumbnails/04.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 5</div>
+					<div rel="description">Description 5 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/05.jpg</div>
+					<div rel="thumbnail">../thumbnails/05.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 6</div>
+					<div rel="description">Description 6 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/06.jpg</div>
+					<div rel="thumbnail">../thumbnails/06.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 7</div>
+					<div rel="description">Description 7 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/07.jpg</div>
+					<div rel="thumbnail">../thumbnails/07.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 8</div>
+					<div rel="description">Description 8 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/08.jpg</div>
+					<div rel="thumbnail">../thumbnails/08.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 9</div>
+					<div rel="description">Description 9 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/09.jpg</div>
+					<div rel="thumbnail">../thumbnails/09.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 10</div>
+					<div rel="description">Description 10 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/10.jpg</div>
+					<div rel="thumbnail">../thumbnails/10.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 11</div>
+					<div rel="description">Description 11 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/11.jpg</div>
+					<div rel="thumbnail">../thumbnails/11.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 12</div>
+					<div rel="description">Description 12 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/12.jpg</div>
+					<div rel="thumbnail">../thumbnails/12.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 13</div>
+					<div rel="description">Description 13 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/13.jpg</div>
+					<div rel="thumbnail">../thumbnails/13.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 14</div>
+					<div rel="description">Description 14 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/14.jpg</div>
+					<div rel="thumbnail">../thumbnails/14.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 15</div>
+					<div rel="description">Description 15 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/15.jpg</div>
+					<div rel="thumbnail">../thumbnails/15.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 16</div>
+					<div rel="description">Description 16 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/16.jpg</div>
+					<div rel="thumbnail">../thumbnails/16.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 17</div>
+					<div rel="description">Description 17 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/17.jpg</div>
+					<div rel="thumbnail">../thumbnails/17.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 18</div>
+					<div rel="description">Description 18 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/18.jpg</div>
+					<div rel="thumbnail">../thumbnails/18.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 19</div>
+					<div rel="description">Description 19 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/19.jpg</div>
+					<div rel="thumbnail">../thumbnails/19.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+				<div rel="slide">
+					<div rel="type">image</div>
+					<div rel="title">Title 20</div>
+					<div rel="description">Description 20 (click on the image to open somesite.com)</div>
+					<div rel="content">../images/20.jpg</div>
+					<div rel="thumbnail">../thumbnails/20.jpg</div>
+					<div rel="target_url">http://www.somesite.com</div>
+					<div rel="target_window">_blank</div>
+				</div>
+			</div>
+		</div> <!-- end SliderWall definition and structure -->
+		
+		<p>For more information on the SliderWall templates please visit the <a href="http://www.sliderwall.com/how-to-use/" target="_blank">How to use</a> section of the site.</p>
+		
+	</div>
+</body>
+</html>

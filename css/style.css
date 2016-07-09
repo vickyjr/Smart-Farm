@@ -2,7 +2,7 @@ body {
   background: #fff;
   line-height: 1.2; }
 
-.whole, .ad {
+.whole, .ad, .sidebar-section {
   width: 100%;
   margin-bottom: 15px; }
 
@@ -46,11 +46,55 @@ body {
 #main-section {
   margin-top: 25px; }
 
+#side-carousel {
+  max-width: 310px; }
+
+.carousel-control.left,
+.carousel-control.right {
+  background: none; }
+
+#follow-us h5 {
+  display: inline-block;
+  background: #6fba67;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 5px 12px; }
+#follow-us a {
+  margin: -1px 5px 1px 5px; }
+
+#most-read {
+  max-width: 300px; }
+  #most-read h5 {
+    background: #343434;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    margin-bottom: 0; }
+  #most-read ul {
+    padding: 8px;
+    border: #cecece 8px solid; }
+    #most-read ul li {
+      list-style: none; }
+      #most-read ul li a {
+        color: #6fba67;
+        padding: 5px 0;
+        display: block;
+        font-size: 12px; }
+
 .img-full {
   min-width: 100%; }
 
 img + p {
   margin-top: 10px; }
+
+#imageSlideshow > div > div > img {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url(../img/white-bar.jpg) no-repeat;
+  width: 7500px;
+  height: 20px;
+  padding-top: 20px; }
 
 .htop-stories {
   margin-bottom: 15px; }
