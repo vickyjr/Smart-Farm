@@ -4,7 +4,8 @@ body {
 
 .whole, .ad, .sidebar-section {
   width: 100%;
-  margin-bottom: 15px; }
+  margin-top: 8px;
+  margin-bottom: 8px; }
 
 #top-bar {
   background: url("../img/top-bg.jpg") repeat-x; }
@@ -24,7 +25,12 @@ body {
     border: none;
     box-shadow: none; }
   #navigation-bar .navbar {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    min-height: 30px; }
+
+.navbar-nav > li > a {
+  padding-top: 7px;
+  padding-bottom: 7px; }
 
 .search-box {
   padding-top: 35px; }
@@ -47,7 +53,8 @@ body {
   margin-top: 25px; }
 
 #side-carousel {
-  max-width: 310px; }
+  max-width: 310px;
+  float: left; }
 
 .carousel-control.left,
 .carousel-control.right {
@@ -62,20 +69,22 @@ body {
 #follow-us a {
   margin: -1px 5px 1px 5px; }
 
-#most-read {
-  max-width: 300px; }
-  #most-read h5 {
+#most-read, .ad {
+  max-width: 300px;
+  float: left;
+  margin-right: 15px; }
+  #most-read h5, .ad h5 {
     background: #343434;
     color: #fff;
     text-transform: uppercase;
     padding: 8px 12px;
     margin-bottom: 0; }
-  #most-read ul {
+  #most-read ul, .ad ul {
     padding: 8px;
     border: #cecece 8px solid; }
-    #most-read ul li {
+    #most-read ul li, .ad ul li {
       list-style: none; }
-      #most-read ul li a {
+      #most-read ul li a, .ad ul li a {
         color: #6fba67;
         padding: 5px 0;
         display: block;
