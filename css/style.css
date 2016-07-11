@@ -2,6 +2,9 @@ body {
   background: #fff;
   line-height: 1.2; }
 
+h1, h2, h3, h4 {
+  color: #6cb063; }
+
 .whole, .ad, .sidebar-section {
   width: 100%;
   margin-top: 8px;
@@ -69,22 +72,25 @@ body {
 #follow-us a {
   margin: -1px 5px 1px 5px; }
 
-#most-read, .ad {
+#most-readn ul {
+  border: none !important; }
+
+#most-read, #most-readn, .ad {
   max-width: 300px;
   float: left;
   margin-right: 15px; }
-  #most-read h5, .ad h5 {
+  #most-read h5, #most-readn h5, .ad h5 {
     background: #343434;
     color: #fff;
     text-transform: uppercase;
     padding: 8px 12px;
     margin-bottom: 0; }
-  #most-read ul, .ad ul {
+  #most-read ul, #most-readn ul, .ad ul {
     padding: 8px;
     border: #cecece 8px solid; }
-    #most-read ul li, .ad ul li {
+    #most-read ul li, #most-readn ul li, .ad ul li {
       list-style: none; }
-      #most-read ul li a, .ad ul li a {
+      #most-read ul li a, #most-readn ul li a, .ad ul li a {
         color: #6fba67;
         padding: 5px 0;
         display: block;
